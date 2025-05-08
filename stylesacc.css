@@ -1,0 +1,175 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #e0eafc, #cfdef3);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    padding-top: 40px;
+    background: linear-gradient(120deg, #a1c4fd, #c2e9fb);
+    animation: gradientFade 10s ease infinite alternate;
+}
+
+@keyframes gradientFade {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+h2 {
+    color: #2c3e50;
+    font-size: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    margin: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+}
+
+button:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px) scale(1.05);
+}
+
+.form-container {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 35px;
+    border-radius: 16px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+    max-width: 420px;
+    width: 90%;
+    margin-top: 30px;
+    display: none;
+    animation: fadeIn 0.4s ease;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.form-container {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 35px;
+    border-radius: 16px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+    max-width: 420px;
+    width: 90%;
+    margin-top: 30px;
+    display: none;
+    animation: fadeIn 0.4s ease;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.form-container2 {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 35px;
+    border-radius: 16px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+    
+    /* Larghezza aumentata */
+    max-width: 800px;
+    width: 95%;        /* Si adatta allo schermo ma non oltre il 95% */
+
+    margin-top: 30px;
+    
+    /* Distanza dal bordo sinistro */
+    margin-left: 20px;  /* Stacco di 20px dal bordo sinistro */
+    
+    display: block;
+    animation: fadeIn 0.4s ease;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+
+
+input[type="text"],
+input[type="password"],
+input[type="telefono"],
+input[type="documento"],
+input[type="dati"] {
+    width: 100%;
+    padding: 14px;
+    margin: 12px 0 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.85);
+    outline: none;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="telefono"]:focus,
+input[type="documento"]:focus,
+input[type="dati"]:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+input[type="submit"] {
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    padding: 14px 20px;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 17px;
+    width: 100%;
+    transition: background-color 0.3s ease, transform 0.2s;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+input[type="submit"]:hover {
+    background-color: #27ae60;
+    transform: translateY(-1px) scale(1.03);
+}
+
+label {
+    font-size: 15px;
+    font-weight: 500;
+    color: #2c3e50;
+    margin-bottom: 5px;
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+th, td {
+    font-size: 12px;
+    border: 1px solid #ddd;  /* Aggiunge un bordo alle celle */
+    padding: 8px;  /* Aggiunge spazio interno nelle celle */
+    text-align: left;  /* Allinea il testo a sinistra nelle celle */
+    word-wrap: break-word;   /* Se il testo è troppo lungo, andrà a capo */
+    overflow-wrap: break-word; /* Assicurati che il testo venga spezzato se necessario */
+    text-overflow: ellipsis; /* Per evitare che il testo si estenda fuori dalla cella */
+}
+
