@@ -1,0 +1,123 @@
+<html>
+<head>
+    <title>Pagina di accesso</title>
+   <!-- Collegamento al file CSS esterno per la grafica della pagina -->
+   <link rel="stylesheet" type="text/css" href="css/stylesacc.css">
+
+    <!-- Script per cambiare dinamicamente i form mostrati -->
+    <script>
+        // Funzione per mostrare il form corretto in base alla scelta dell'utente
+        function mostraForm(tipo) {
+            // Mostra il form di accesso se "utente" è selezionato
+            document.getElementById('formUtente').style.display = tipo === 'utente' ? 'block' : 'none';
+            // Mostra il form per la registrazione come autista
+            document.getElementById('formRegistrazioneautista').style.display = tipo === 'Registra_autista' ? 'block' : 'none';
+            // Mostra il form per la registrazione come passeggero
+            document.getElementById('formRegistrazionepasseggero').style.display = tipo === 'Registra_passeggero' ? 'block' : 'none';
+        }
+    </script>
+
+</head>
+<body>
+    <!-- Creazione delle 3 operazioni possibili per l'utente -->
+    <h2>Seleziona il tipo di accesso</h2>
+    <!-- Pulsanti per scegliere quale operazione l'utente vuole fare -->
+    <button onclick="mostraForm('utente')">Accesso</button>
+    <button onclick="mostraForm('Registra_autista')">Registrazione autista</button>
+    <button onclick="mostraForm('Registra_passeggero')">Registrazione passeggero</button>
+    
+    <!-- Banner per mostrare un messaggio di errore se l'email non è valida -->
+    <div id="bannerErrore" style="display:none; color:red; font-weight:bold;">
+        Inserisci un'email valida con la chiocciolina (@)
+    </div>
+  
+    <!-- Form per l'accesso dell'utente con email e password -->
+    <div id="formUtente" class="form-container">
+        <h2>Inserisci le tue credenziali</h2>
+        <!-- Form per l'accesso con validazione dell'email tramite la funzione checkEmail() -->
+        <form onsubmit="return checkEmail()" action="accedi.php" method="POST">
+            <label>Email:</label>
+            <input type="text" id="EmailUtente" name="Email_utente" placeholder="Inserisci la tua email"><br>
+            <label>Password:</label>
+            <input type="password" name="Password_utente" placeholder="Inserisci la tua password"><br>
+            <input type="submit" value="Accedi">
+        </form>
+    </div>
+  
+    <!-- Script per validare che l'email inserita contenga la chiocciolina (@) -->
+    <script>
+        function checkEmail() {
+            const email = document.getElementById('EmailUtente').value;
+            const banner = document.getElementById('bannerErrore');
+            if (!email.includes('@')) return banner.style.display='block', false; // Mostra messaggio errore se non c'è la @
+            banner.style.display='none'; // Nasconde il messaggio di errore se email valida
+            return true;
+        }
+    </script>
+
+    <!-- Form per la registrazione dell'autista -->
+    <div id="formRegistrazioneautista" class="form-container">
+        <h2>Inserisci le credenziali per registrarti</h2>
+        <form action="Registrazione.php" method="POST">
+            <input type="hidden" name="Ruolo" value="autista"> <!-- Imposta il ruolo come autista -->
+            <br>
+            <!-- Input per nome, cognome, sesso, password, telefono, email, dati auto e patente -->
+            <label for="nomeRegistrazione">Nome:</label>
+            <input type="text" id="nomeregistrazione" name="Nome_registrazione" placeholder="Inserisci il tuo nome" required><br>
+            <label for="CognomeRegistrazione">Cognome:</label>
+            <input type="text" id="Cognomeregistrazione" name="Cognome_registrazione" placeholder="Inserisci il tuo cognome" required><br>
+            <label for="SessoRegistrazione">Sesso:</label>
+            <select id="SessoRegistrazione" name="Sesso_registrazione" required>
+                <option value="" disabled selected>Seleziona il tuo sesso</option>
+                <option value="Maschio">Maschio</option>
+                <option value="Femmina">Femmina</option>
+                <option value="Non specificato">Preferisco non specificare</option>
+            </select><br><br>
+            <label for="passwordRegistrazione">Password:</label>
+            <input type="password" id="passwordRegistrazione" name="Password_Registrazione" placeholder="Inserisci la tua password" required><br>
+            <label for="TelefonoRegistrazione">Telefono:</label>
+            <input type="text" id="TelefonoRegistrazione" name="telefono_Registrazione" placeholder="Inserisci il tuo numero di telefono" required pattern="^[0-9]{10,15}$" title="Inserisci un numero valido (solo cifre, da 10 a 15 numeri)"><br>
+            <label for="EmailRegistrazione">Email:</label>
+            <input type="email" id="EmailRegistrazione" name="Email_registrazione" placeholder="Inserisci la tua email" required><br><br>
+            <label for="datiRegistrazione">Dati:</label>
+            <input type="text" id="datiRegistrazione" name="dati_Registrazione" placeholder="Inserisci i dati della tua automobile" required><br>
+            <label for="patenteRegistrazione">Patente:</label>
+            <input type="text" id="patenteregistrazione" name="patente_registrazione" placeholder="Inserisci il codice della tua patente" required><br>            
+            
+            <label for="scadenzaRegistrazione">Scadenza:</label>
+            <input type="date" id="scadenzaregistrazione" name="scadenza_registrazione" required min="" /><br><br>
+            
+            <script>
+            // Impostare il valore minimo della data come la data di domani
+            document.getElementById('scadenzaregistrazione').min = new Date().toISOString().split('T')[0];
+            </script>            
+
+            <input type="submit" value="Registrati">
+        </form>
+    </div>
+
+    <!-- Form per la registrazione del passeggero -->
+    <div id="formRegistrazionepasseggero" class="form-container">
+        <h2>Inserisci le credenziali per registrarti</h2>
+        <form action="Registrazione.php" method="POST">
+            <input type="hidden" name="Ruolo" value="passeggero"> <!-- Imposta il ruolo come passeggero -->
+            <br>
+            <!-- Input per nome, cognome, email, password, telefono e documento -->
+            <label for="nomeRegistrazione">Nome:</label>
+            <input type="text" id="nomeregistrazione" name="Nome_registrazione2" placeholder="Inserisci il tuo nome" required><br>
+            <label for="CognomeRegistrazione">Cognome:</label>
+            <input type="text" id="Cognomeregistrazione" name="Cognome_registrazione2" placeholder="Inserisci il tuo cognome" required><br>
+            <label for="EmailRegistrazione">Email:</label>
+            <input type="email" id="EmailRegistrazione" name="Email_registrazione2" placeholder="Inserisci la tua email" required><br><br>
+            <label for="passwordRegistrazione">Password:</label>
+            <input type="password" id="passwordRegistrazione" name="Password_Registrazione2" placeholder="Inserisci la tua password" required><br>
+            <label for="TelefonoRegistrazione">Telefono:</label>
+            <input type="text" id="TelefonoRegistrazione" name="telefono_registrazione2" placeholder="Inserisci il tuo numero di telefono" required pattern="^[0-9]{10,15}$" title="Inserisci un numero valido (solo cifre, da 10 a 15 numeri)"><br>
+            <label for="documentoRegistrazione">Documento:</label>
+            <input type="text" id="documentoRegistrazione" name="documento_Registrazione2" placeholder="Inserisci l'ID del documento" required><br>
+            <input type="submit" value="Registrati">
+        </form>
+    </div>
+
+</body>
+</html>
