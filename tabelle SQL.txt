@@ -1,0 +1,60 @@
+CREATE TABLE autista (
+    id_autista INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(50),
+    cognome VARCHAR(50),
+    sesso VARCHAR(10),
+    recapito_telefono VARCHAR(20),
+    email VARCHAR(100),
+    foto TEXT,
+    dati_auto VARCHAR(1000),
+    numero_patente VARCHAR(30),
+    scadenza_patente DATE,
+    password VARCHAR(100)
+);
+
+CREATE TABLE passeggero (
+    id_passeggero INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(50),
+    cognome VARCHAR(50),
+    telefono VARCHAR(20),
+    email VARCHAR(100),
+    documento VARCHAR(50),
+    password VARCHAR(100)
+);
+
+CREATE TABLE viaggio (
+    id_viaggio INT PRIMARY KEY AUTO_INCREMENT,
+    citta_partenza VARCHAR(100),
+    citta_arrivo VARCHAR(100),
+    data DATE,
+    tempo INT,
+    orario TIME,
+    numero_passeggeri INT,
+    soste INT,
+    costo INT,
+    id_autista INT,
+    FOREIGN KEY (id_autista) REFERENCES autista(id_autista)
+);
+
+CREATE TABLE Feedback (
+    id_feedback INT PRIMARY KEY AUTO_INCREMENT,
+    recensione VARCHAR(100),
+    voto INT,
+    id_viaggio INT,
+    id_autista INT,
+    id_utente INT,
+    recensitore VARCHAR(100),
+    FOREIGN KEY (id_viaggio) REFERENCES viaggio(id_viaggio),
+    FOREIGN KEY (id_autista) REFERENCES autista(id_autista),
+    FOREIGN KEY (id_utente) REFERENCES passeggero(id_passeggero)
+);
+
+CREATE TABLE partecipa (
+    id_partecipa INT PRIMARY KEY AUTO_INCREMENT,
+    id_viaggio INT,
+    id_passeggero INT,
+    stato VARCHAR(100),
+    FOREIGN KEY (id_viaggio) REFERENCES viaggio(id_viaggio),
+    FOREIGN KEY (id_passeggero) REFERENCES passeggero(id_passeggero)
+);
+

@@ -1,0 +1,51 @@
+autista (
+    id_autista [PK],
+    nome,
+    cognome,
+    sesso,
+    recapito_telefono,
+    email,
+    foto,
+    dati_auto,
+    numero_patente,
+    scadenza_patente
+)
+
+passeggero (
+    id_passeggero [PK],
+    nome,
+    cognome,
+    telefono,
+    email,
+    documento
+)
+
+viaggio (
+    id_viaggio [PK],
+    citta_partenza,
+    citta_arrivo,
+    data,
+    tempo,
+    orario,
+    numero_passeggeri,
+    soste,
+    costo,
+    id_autista [FK]
+)
+
+partecipa (
+    id_partecipa
+    stato
+    id_viaggio [FK],
+    id_passeggero [FK]
+)
+
+feedback (
+    id_feedback [PK],
+    recensione,
+    voto,
+    recensitore
+    id_viaggio [FK],
+    id_autista [FK],
+    id_utente [FK]
+)
